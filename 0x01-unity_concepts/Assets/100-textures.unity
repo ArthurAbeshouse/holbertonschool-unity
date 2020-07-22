@@ -605,6 +605,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Textured Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 7187975644480437191, guid: 6e117f19269724c44a9d380b3eea1fed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e117f19269724c44a9d380b3eea1fed, type: 3}
 --- !u!1001 &1606363004
