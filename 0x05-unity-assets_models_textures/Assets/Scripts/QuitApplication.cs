@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class QuitApplication : MonoBehaviour
 {
+    // It quits the game
     void Update()
     {
         if (Input.GetKeyDown("escape"))
