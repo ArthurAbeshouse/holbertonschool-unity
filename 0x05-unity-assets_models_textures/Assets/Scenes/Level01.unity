@@ -1871,7 +1871,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &467325847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7045,7 +7045,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8956276461189781062, guid: 54d1a1d5fd92848849b3165deab32cfd, type: 3}
 --- !u!1001 &1512595263
