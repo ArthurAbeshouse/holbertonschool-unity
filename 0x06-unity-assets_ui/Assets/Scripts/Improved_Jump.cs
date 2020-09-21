@@ -9,15 +9,15 @@ public class Improved_Jump : MonoBehaviour
     public float gravityScale = 1f;
     private float globalGravity = -9.81f;
 
-    Rigidbody rbdy;
+    private Rigidbody rbdy;
 
-    void Awake()
+    void Start()
     {
         rbdy = GetComponent<Rigidbody>();
         rbdy.useGravity = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         if (rbdy.velocity.y < 0)
