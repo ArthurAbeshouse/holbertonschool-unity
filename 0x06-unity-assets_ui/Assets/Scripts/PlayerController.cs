@@ -21,12 +21,12 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+  /*  void Update()
     {
         float hori = Input.GetAxis("Horizontal");
         float verti = Input.GetAxis("Vertical");
         PlayerMovement(hori, verti);
-    }
+    } */
     void PlayerMovement(float hori, float verti)
     {
         // makes the player move and adjusts the input direction
@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        float hori = Input.GetAxis("Horizontal");
+        float verti = Input.GetAxis("Vertical");
+        PlayerMovement(hori, verti);
         Respawn();
     }
     void Respawn()

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3173621763100335343}
   - component: {fileID: 3173621763100335342}
+  - component: {fileID: 1724380723}
+  - component: {fileID: 1724380725}
   m_Layer: 0
   m_Name: Scene_control
   m_TagString: Untagged
@@ -41,5 +43,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6011bba00c4243c4967926c0b30e051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1724380723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173621763100335337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a010d6034a6bc4917b557f5c90af952b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseCanvas: {fileID: 0}
+  Main_cam: {fileID: 0}
+--- !u!114 &1724380725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173621763100335337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46170767761a64421a829765a91140c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

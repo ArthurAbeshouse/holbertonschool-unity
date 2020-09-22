@@ -19,14 +19,9 @@ public class CameraControl : MonoBehaviour
     void Start()
     {
         offset = transform.position - player.position;
+        invert = OptionsMenu.invert;
         if (PlayerPrefs.HasKey("isInverted"))
             isInverted = PlayerPrefs.GetInt("isInverted") == 0 ? false : true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        invert = OptionsMenu.invert;
     }
 
     void LateUpdate()

@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a030119b4d64f5b98c336b8fdfd154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 15
+  velocity: 12
   isGrounded: 1
   threshold: -10
   jumpSpeed: 8
@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerText: {fileID: 0}
+  FinalTime: {fileID: 0}
+  WinCanvas: {fileID: 0}
 --- !u!114 &467325847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986a833f9c98b45c7ac13aebef14c1f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMultiplier: 3
+  fallMultiplier: 2.5
   lowJumpMultiplier: 2
-  gravityScale: 0.7
+  gravityScale: 1
