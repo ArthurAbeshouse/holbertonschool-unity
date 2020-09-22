@@ -20,7 +20,7 @@ public class CameraControl : MonoBehaviour
     {
         offset = transform.position - player.position;
         if (PlayerPrefs.HasKey("isInverted"))
-            isInvert = PlayerPrefs.GetInt("isInverted") == 0 ? false : true;
+            isInverted = PlayerPrefs.GetInt("isInverted") == 0 ? false : true;
     }
 
     // Update is called once per frame
