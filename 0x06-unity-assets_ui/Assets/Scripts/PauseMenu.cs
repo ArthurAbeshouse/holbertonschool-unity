@@ -53,6 +53,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Options()
     {
+        PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Options");
         Time.timeScale = 1;
     }
 }

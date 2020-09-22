@@ -8,15 +8,39 @@ public class OptionsMenu : MonoBehaviour
 {
     public Toggle invert_cam;
 
+    public static int invert = 1;
+
     // Start is called before the first frame update
-    public void Back()
+    private void Start()
     {
-        SceneManager.LoadScene("PreviousScene");
+        if (PlayerPrefs.HasKey("Invert"))
+        {
+            invert_cam.isOn = PlayerPrefs.GetInt("Invert") == 0 ? false : true;
+        }
+        else
+        {
+            invert_cam.isOn = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Back()
     {
-        
+        SceneManager.LoadScene(PlayerPrefs.GetString("LastScene"));
+        Time.timeScale = 1;
+    }
+
+    public void Apply()
+    {
+        PlayerPrefs.SetInt("Invert", invert_cam.isOn ? 1 : 0);
+        if (invert_cam.isOn)
+        {
+            Debug.Log("invert");
+            invert = -1;
+        }
+        else
+        {
+            Debug.Log("regular");
+            invert = 1;
+        }
     }
 }
