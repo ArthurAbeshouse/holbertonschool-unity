@@ -28,14 +28,14 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         PauseCanvas.SetActive(true);
-        Main_cam.GetComponent<CameraControl>().enabled = false;
+        Main_cam.GetComponent<CameraController>().enabled = false;
         Time.timeScale = 0;
     }
 
     public void Resume()
     {
         PauseCanvas.SetActive(false);
-        Main_cam.GetComponent<CameraControl>().enabled = true;
+        Main_cam.GetComponent<CameraController>().enabled = true;
         Time.timeScale = 1;
     }
 
