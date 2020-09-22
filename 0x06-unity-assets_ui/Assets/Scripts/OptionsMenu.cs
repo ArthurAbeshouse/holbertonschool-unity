@@ -13,9 +13,9 @@ public class OptionsMenu : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        if (PlayerPrefs.HasKey("Invert"))
+        if (PlayerPrefs.HasKey("isInverted"))
         {
-            invert_cam.isOn = PlayerPrefs.GetInt("Invert") == 0 ? false : true;
+            invert_cam.isOn = PlayerPrefs.GetInt("isInverted") == 0 ? false : true;
         }
         else
         {
@@ -31,15 +31,15 @@ public class OptionsMenu : MonoBehaviour
 
     public void Apply()
     {
-        PlayerPrefs.SetInt("Invert", invert_cam.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("isInverted", invert_cam.isOn ? 1 : 0);
         if (invert_cam.isOn)
         {
-            Debug.Log("invert");
+            //Debug.Log("invert");
             invert = -1;
         }
         else
         {
-            Debug.Log("regular");
+            //Debug.Log("regular");
             invert = 1;
         }
     }

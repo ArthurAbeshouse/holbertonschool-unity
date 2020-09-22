@@ -13,14 +13,14 @@ public class CameraControl : MonoBehaviour
 
     public static int invert;
 
-    public bool isInvert = false;
+    public bool isInverted = false;
 
     // Start is called before the first frame update
     void Start()
     {
         offset = transform.position - player.position;
-        if (PlayerPrefs.HasKey("Invert"))
-            isInvert = PlayerPrefs.GetInt("Invert") == 0 ? false : true;
+        if (PlayerPrefs.HasKey("isInverted"))
+            isInvert = PlayerPrefs.GetInt("isInverted") == 0 ? false : true;
     }
 
     // Update is called once per frame
