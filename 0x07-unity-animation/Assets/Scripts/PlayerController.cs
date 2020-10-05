@@ -7,6 +7,11 @@ public class PlayerController : MonoBehaviour
     public float velocity;
     public bool isGrounded = true;
 
+    public float turnSmoothTime;
+    float turnSmoothVelocity;
+
+    public Transform cam;
+
     public float threshold;
 
     [Range(1, 10)]
@@ -31,20 +36,34 @@ public class PlayerController : MonoBehaviour
     {
         // makes the player move and adjusts the input direction
         // based on where the camera is pointing
-        float facing = Camera.main.transform.eulerAngles.y;
-        Vector3 targetDirection = new Vector3(hori, 0f, verti);
-        Vector3 TurnedInputs = Quaternion.Euler(0, facing, 0) * targetDirection;
-        rbdy.MovePosition(transform.position + TurnedInputs * velocity * Time.deltaTime);
+        //float facing = Camera.main.transform.eulerAngles.y;
+        Vector3 targetDirection = new Vector3(hori, 0f, verti).normalized;
+        if (targetDirection.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            //control.Move(targetDirection * velocity * Time.deltaTime);
+            //Vector3 TurnedInputs = Quaternion.Euler(0f, facing, 0f) * targetDirection;
+            //Vector3 TurnedInputs = Quaternion.Euler(0f, targetAngle, 0f) * targetDirection;
+            Vector3 TurnedInputs = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
+            rbdy.MovePosition(transform.position + TurnedInputs * velocity * Time.deltaTime);
+
+        }
+       // Vector3 TurnedInputs = Quaternion.Euler(0, facing, 0) * targetDirection;
+        //rbdy.MovePosition(transform.position + TurnedInputs * velocity * Time.deltaTime);
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+            //rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
             isGrounded = false;
+            rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
         }
     }
     void FixedUpdate()
     {
-        float hori = Input.GetAxis("Horizontal");
-        float verti = Input.GetAxis("Vertical");
+        float hori = Input.GetAxisRaw("Horizontal");
+        float verti = Input.GetAxisRaw("Vertical");
         PlayerMovement(hori, verti);
         Respawn();
     }

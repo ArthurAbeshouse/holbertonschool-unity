@@ -9,12 +9,10 @@ public class CutsceneController : MonoBehaviour
     public GameObject Timer;
 
     public float delayTime;
-   // private PlayerScript PS;
 
     // Start is called before the first frame update
     void Start()
     {
-        //PS = Player.GetComponent<PlayerController>();
         StartCoroutine(Begin(delayTime));
     }
 
