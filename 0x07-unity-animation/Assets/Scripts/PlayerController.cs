@@ -19,10 +19,13 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody rbdy;
 
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         rbdy = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -43,13 +46,20 @@ public class PlayerController : MonoBehaviour
             float targetAngle = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
+            if (isGrounded)
+            {
+                animator.SetBool("IsRunning", true);
+            }
             //control.Move(targetDirection * velocity * Time.deltaTime);
             //Vector3 TurnedInputs = Quaternion.Euler(0f, facing, 0f) * targetDirection;
             //Vector3 TurnedInputs = Quaternion.Euler(0f, targetAngle, 0f) * targetDirection;
             Vector3 TurnedInputs = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
             rbdy.MovePosition(transform.position + TurnedInputs * velocity * Time.deltaTime);
 
+        }
+        else
+        {
+            animator.SetBool("IsRunning", false);
         }
        // Vector3 TurnedInputs = Quaternion.Euler(0, facing, 0) * targetDirection;
         //rbdy.MovePosition(transform.position + TurnedInputs * velocity * Time.deltaTime);

@@ -10801,16 +10801,6 @@ PrefabInstance:
       propertyPath: WinCanvas
       value: 
       objectReference: {fileID: 1228790247}
-    - target: {fileID: 2152483257501866031, guid: 4a752f39049314e00bce578035021500,
-        type: 3}
-      propertyPath: m_WarningMessage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5422057745381720661, guid: 4a752f39049314e00bce578035021500,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.22
-      objectReference: {fileID: 0}
     - target: {fileID: 5527532714381755778, guid: 4a752f39049314e00bce578035021500,
         type: 3}
       propertyPath: m_LocalPosition.x
