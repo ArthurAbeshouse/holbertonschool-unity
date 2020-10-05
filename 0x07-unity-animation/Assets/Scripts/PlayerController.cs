@@ -46,9 +46,10 @@ public class PlayerController : MonoBehaviour
             float targetAngle = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            animator.SetBool("IsRunning", true);
             if (isGrounded)
             {
-                animator.SetBool("IsRunning", true);
+                animator.SetBool("IsJumping", false);
             }
             //control.Move(targetDirection * velocity * Time.deltaTime);
             //Vector3 TurnedInputs = Quaternion.Euler(0f, facing, 0f) * targetDirection;
@@ -63,10 +64,27 @@ public class PlayerController : MonoBehaviour
         }
        // Vector3 TurnedInputs = Quaternion.Euler(0, facing, 0) * targetDirection;
         //rbdy.MovePosition(transform.position + TurnedInputs * velocity * Time.deltaTime);
+      /*  if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            //rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+            isGrounded = false;
+            if (!isGrounded)
+            {
+                animator.SetBool("IsJumping", true);
+            }
+            rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        }*/
+    }
+    void Update()
+    {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             //rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
             isGrounded = false;
+            if (!isGrounded)
+            {
+                animator.SetBool("IsJumping", true);
+            }
             rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
         }
     }
@@ -87,6 +105,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            animator.SetBool("IsJumping", false);
         }
     }
 }
