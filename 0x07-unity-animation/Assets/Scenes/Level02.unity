@@ -8687,6 +8687,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 467325841, guid: 4a752f39049314e00bce578035021500, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 467325842, guid: 4a752f39049314e00bce578035021500, type: 3}
       propertyPath: TimerText
       value: 
