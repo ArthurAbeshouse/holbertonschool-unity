@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < -2)
         {
             isGrounded = false;
+            animator.SetBool("IsGrounded", isGrounded);
         }
         if (!isGrounded)
         {
