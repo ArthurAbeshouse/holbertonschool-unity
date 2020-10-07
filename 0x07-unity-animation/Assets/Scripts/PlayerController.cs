@@ -86,10 +86,10 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsJumping", false);
                 animator.SetBool("IsRunning", false);
             }
-        }
-        else
-        {
-            animator.SetBool("IsFalling", false);
+            else
+            {
+                animator.SetBool("IsFalling", false);
+            }
         }
     }
     void FixedUpdate()
@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
     }
     void Respawn()
     {
+        //animator.SetBool("IsFalling", true);
         if (transform.position.y < threshold)
             transform.position = new Vector3(0, 8.117001f, 0);
     }
@@ -111,6 +112,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             animator.SetBool("IsGrounded", isGrounded);
             animator.SetBool("IsJumping", false);
+            animator.SetBool("IsFalling", false);
         }
     }
 }
