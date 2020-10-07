@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
 
     public Transform cam;
 
+    public float falldistance;
+    private float jumpfalltrig;
+
     public float threshold;
 
     [Range(1, 10)]
@@ -28,21 +31,14 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
-  /*  void Update()
-    {
-        float hori = Input.GetAxis("Horizontal");
-        float verti = Input.GetAxis("Vertical");
-        PlayerMovement(hori, verti);
-    } */
     void PlayerMovement(float hori, float verti)
     {
         // makes the player move and adjusts the input direction
         // based on where the camera is pointing
-        //float facing = Camera.main.transform.eulerAngles.y;
         Vector3 targetDirection = new Vector3(hori, 0f, verti).normalized;
         if (targetDirection.magnitude >= 0.1f)
         {
+            animator.SetFloat("IsMoving", targetDirection.magnitude);
             float targetAngle = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -51,9 +47,6 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("IsJumping", false);
             }
-            //control.Move(targetDirection * velocity * Time.deltaTime);
-            //Vector3 TurnedInputs = Quaternion.Euler(0f, facing, 0f) * targetDirection;
-            //Vector3 TurnedInputs = Quaternion.Euler(0f, targetAngle, 0f) * targetDirection;
             Vector3 TurnedInputs = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
             rbdy.MovePosition(transform.position + TurnedInputs * velocity * Time.deltaTime);
 
@@ -61,31 +54,41 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("IsRunning", false);
+            animator.SetFloat("IsMoving", 0f);
         }
-       // Vector3 TurnedInputs = Quaternion.Euler(0, facing, 0) * targetDirection;
-        //rbdy.MovePosition(transform.position + TurnedInputs * velocity * Time.deltaTime);
-      /*  if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            //rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-            isGrounded = false;
-            if (!isGrounded)
-            {
-                animator.SetBool("IsJumping", true);
-            }
-            rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-        }*/
     }
+
+    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            //rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
             isGrounded = false;
+            animator.SetBool("IsGrounded", isGrounded);
             if (!isGrounded)
             {
                 animator.SetBool("IsJumping", true);
             }
             rbdy.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+            // Measure how far the player has fallen to activate the falling animation
+            jumpfalltrig = Time.time + falldistance;
+        }
+        if (transform.position.y < -5)
+        {
+            isGrounded = false;
+        }
+        if (!isGrounded)
+        {
+            if (Time.time > jumpfalltrig)
+            {
+                animator.SetBool("IsFalling", true);
+                animator.SetBool("IsJumping", false);
+                animator.SetBool("IsRunning", false);
+            }
+        }
+        else
+        {
+            animator.SetBool("IsFalling", false);
         }
     }
     void FixedUpdate()
@@ -98,13 +101,14 @@ public class PlayerController : MonoBehaviour
     void Respawn()
     {
         if (transform.position.y < threshold)
-            transform.position = new Vector3(0, 0.9899995f, 0);
+            transform.position = new Vector3(0, 8.117001f, 0);
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            animator.SetBool("IsGrounded", isGrounded);
             animator.SetBool("IsJumping", false);
         }
     }

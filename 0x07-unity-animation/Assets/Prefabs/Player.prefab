@@ -133,7 +133,8 @@ MonoBehaviour:
   isGrounded: 1
   turnSmoothTime: 0.1
   cam: {fileID: 0}
-  threshold: -10
+  falldistance: 1.5
+  threshold: -15
   jumpSpeed: 10
 --- !u!114 &467325842
 MonoBehaviour:
