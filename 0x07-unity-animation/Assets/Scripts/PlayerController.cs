@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
             // Measure how far the player has fallen to activate the falling animation
             jumpfalltrig = Time.time + falldistance;
         }
-        if (transform.position.y < -5)
+        if (transform.position.y < -2)
         {
             isGrounded = false;
         }
