@@ -83,8 +83,6 @@ public class PlayerController : MonoBehaviour
             if (Time.time > jumpfalltrig)
             {
                 animator.SetBool("IsFalling", true);
-                animator.SetBool("IsJumping", false);
-                animator.SetBool("IsRunning", false);
             }
             else
             {
