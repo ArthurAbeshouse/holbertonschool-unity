@@ -329,6 +329,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsFalling
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsGrounded
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3487331000147954238}
   m_Solo: 0
@@ -645,23 +648,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1109 &8628100221379071854
-AnimatorTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: GettingUpToIdle
-  m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: IsMoving
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -5967510315499896171}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 1
 --- !u!1107 &8794823474796409332
 AnimatorStateMachine:
   serializedVersion: 5
@@ -689,8 +675,7 @@ AnimatorStateMachine:
   - {fileID: -2675897212867375365}
   m_StateMachineTransitions:
   - first: {fileID: 6537323744747965867}
-    second:
-    - {fileID: 8628100221379071854}
+    second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -90, y: 10, z: 0}
   m_EntryPosition: {x: 30, y: 120, z: 0}
