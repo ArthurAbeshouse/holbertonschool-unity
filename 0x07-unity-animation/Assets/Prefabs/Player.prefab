@@ -124,7 +124,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5527532714381755782}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2a030119b4d64f5b98c336b8fdfd154, type: 3}
   m_Name: 
@@ -133,9 +133,9 @@ MonoBehaviour:
   isGrounded: 1
   turnSmoothTime: 0.1
   cam: {fileID: 0}
-  falldistance: 1.07
-  threshold: -15
-  jumpSpeed: 10
+  falldistance: 1.7
+  threshold: -20
+  jumpSpeed: 8.5
 --- !u!114 &467325842
 MonoBehaviour:
   m_ObjectHideFlags: 0
