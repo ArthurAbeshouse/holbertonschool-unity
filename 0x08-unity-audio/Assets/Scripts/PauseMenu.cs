@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -9,10 +11,18 @@ public class PauseMenu : MonoBehaviour
     public GameObject PauseCanvas;
     public GameObject Main_cam;
 
+    public AudioMixerSnapshot paused;
+    public AudioMixerSnapshot unpaused;
+
+    private void Start()
+    {
+        unpaused.TransitionTo(.01f);
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            isPaused = !isPaused;
             if (isPaused)
             {
                 Resume();
@@ -20,8 +30,7 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 Pause();
-            }
-            isPaused = !isPaused;
+            } 
         }
     }
 
@@ -30,6 +39,7 @@ public class PauseMenu : MonoBehaviour
         PauseCanvas.SetActive(true);
         Main_cam.GetComponent<CameraController>().enabled = false;
         Time.timeScale = 0;
+        Lowpass();
     }
 
     public void Resume()
@@ -37,6 +47,19 @@ public class PauseMenu : MonoBehaviour
         PauseCanvas.SetActive(false);
         Main_cam.GetComponent<CameraController>().enabled = true;
         Time.timeScale = 1;
+        Lowpass();
+    }
+
+    void Lowpass()
+    {
+        if (Time.timeScale == 0)
+        {
+            paused.TransitionTo(.01f);
+        }
+        else
+        {
+            unpaused.TransitionTo(.01f);
+        }
     }
 
     public void Restart()

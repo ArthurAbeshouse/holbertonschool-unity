@@ -59,6 +59,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseCanvas: {fileID: 0}
   Main_cam: {fileID: 0}
+  paused: {fileID: 5024292606609293136, guid: 8ff6fd2638f484d899e8c00a332b4c1b, type: 2}
+  unpaused: {fileID: 24500006, guid: 8ff6fd2638f484d899e8c00a332b4c1b, type: 2}
 --- !u!114 &1724380725
 MonoBehaviour:
   m_ObjectHideFlags: 0

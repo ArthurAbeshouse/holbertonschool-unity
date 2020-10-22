@@ -8,6 +8,9 @@ public class OptionsMenu : MonoBehaviour
 {
     public Toggle invert_cam;
 
+    public Slider BGM;
+    public Slider SFX;
+
     public static int invert = 1;
 
     // Start is called before the first frame update
@@ -21,6 +24,8 @@ public class OptionsMenu : MonoBehaviour
         {
             invert_cam.isOn = false;
         }
+        BGM.value = PlayerPrefs.GetFloat("BGM", 1);
+        SFX.value = PlayerPrefs.GetFloat("SFX", 1);
     }
 
     public void Back()
@@ -42,5 +47,7 @@ public class OptionsMenu : MonoBehaviour
             //Debug.Log("regular");
             invert = 1;
         }
+        PlayerPrefs.SetFloat("BGM", BGM.value);
+        PlayerPrefs.SetFloat("SFX", SFX.value);
     }
 }

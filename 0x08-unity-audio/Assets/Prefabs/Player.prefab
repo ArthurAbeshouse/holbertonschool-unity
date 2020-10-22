@@ -134,7 +134,7 @@ MonoBehaviour:
   isGrounded: 1
   onGrass: 1
   onRock: 0
-  wasGrounded: 0
+  wasGrounded: 1
   turnSmoothTime: 0.1
   cam: {fileID: 0}
   falldistance: 1.7
