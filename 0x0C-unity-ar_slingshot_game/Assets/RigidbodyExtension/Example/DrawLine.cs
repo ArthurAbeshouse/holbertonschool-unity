@@ -69,7 +69,7 @@ public class DrawLine : MonoBehaviour {
     }
 	void Update () {
 
-        addedV = -Launch.porsh;
+        //addedV = -Launch.porsh;
 
         //addedF = Launch.mouseReleasePos;
 

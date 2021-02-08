@@ -12,7 +12,7 @@ public class Launch : MonoBehaviour
     private Vector3 mousePressDownPos;
     private Vector3 mouseReleasePos;
 
-    public static Vector3 porsh;
+    //public static Vector3 porsh;
 
     //public static Vector3 mousePosition;
 
@@ -54,7 +54,7 @@ public class Launch : MonoBehaviour
         //DrawMovementLine();
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         UpdateTrajectory(transform.position, transform.forward, Input.mousePosition);
         //OnMouseDown();
@@ -72,8 +72,10 @@ public class Launch : MonoBehaviour
         if (isShoot)
             return;
 
-        //rb.AddForce(new Vector3(Force.x, Force.y, Force.y) * forceMultiplier);
-        rb.velocity = new Vector3(Force.x, Force.y, Force.y) * forceMultiplier;
+        rb.isKinematic = false;
+
+        rb.AddForce(new Vector3(Force.x, Force.y, Force.y) * forceMultiplier);
+        //rb.velocity = new Vector3(Force.x, Force.y, Force.y) * forceMultiplier;
         isShoot = true;
         if (isShoot)
             LineRen.enabled = false;
