@@ -9,8 +9,10 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(Collider))]
 public class Launch : MonoBehaviour
 {
-    public Vector3 mousePressDownPos;
-    public Vector3 mouseReleasePos;
+    private Vector3 mousePressDownPos;
+    private Vector3 mouseReleasePos;
+
+    public static Vector3 porsh;
 
     //public static Vector3 mousePosition;
 
@@ -18,9 +20,11 @@ public class Launch : MonoBehaviour
 
     public bool isShoot;
 
+    public bool isTouch;
+
     public float forceMultiplier;
 
-    LineRenderer LineRen;
+    private LineRenderer LineRen;
 
     void Start()
     {
@@ -31,10 +35,30 @@ public class Launch : MonoBehaviour
     private void OnMouseDown()
     {
         mousePressDownPos = Input.mousePosition;
+        LineRen.enabled = true;
+        /*if (isTouch)
+            return;
+
+        if (!isShoot && Input.touchCount > 0)
+        {
+            isTouch = true;
+            if (isTouch)
+            {
+                mousePressDownPos = Input.mousePosition;
+                //this.gameObject.GetComponent<DrawLine>().enabled = true;
+                porsh = mousePressDownPos;
+            }
+        }*/
        // Debug.Log(mousePressDownPos);
-        this.gameObject.GetComponent<DrawLine>().enabled = true;
+        //this.gameObject.GetComponent<DrawLine>().enabled = true;
         //DrawMovementLine();
     }
+
+    public void Update()
+    {
+        UpdateTrajectory(transform.position, transform.forward, Input.mousePosition);
+        //OnMouseDown();
+    } 
 
     private void OnMouseUp()
     {
@@ -48,9 +72,31 @@ public class Launch : MonoBehaviour
         if (isShoot)
             return;
 
-        rb.AddForce(new Vector3(Force.x, Force.y, Force.y) * forceMultiplier);
+        //rb.AddForce(new Vector3(Force.x, Force.y, Force.y) * forceMultiplier);
+        rb.velocity = new Vector3(Force.x, Force.y, Force.y) * forceMultiplier;
         isShoot = true;
+        if (isShoot)
+            LineRen.enabled = false;
         Ammo_spawner.Instance.NewSpawnRequest();
+    }
+
+    void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity)
+    {
+        int numSteps = 20; // for example
+        float timeDelta = 1.0f / initialVelocity.magnitude; // for example
+    
+        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.SetVertexCount(numSteps);
+    
+        Vector3 position = initialPosition;
+        Vector3 velocity = initialVelocity;
+        for (int i = 0; i < numSteps; ++i)
+        {
+            lineRenderer.SetPosition(i, position);
+    
+            position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
+            velocity += gravity * timeDelta;
+        }
     }
 
     /* private void DrawMovementLine()

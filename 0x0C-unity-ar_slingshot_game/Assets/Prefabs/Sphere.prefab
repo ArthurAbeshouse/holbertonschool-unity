@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1368013178605844096}
   - component: {fileID: 7292407207023261027}
   - component: {fileID: -6993410240051969477}
-  - component: {fileID: 7471250057970090292}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -120,7 +119,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564143256430486412}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -252,22 +251,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isShoot: 0
-  forceMultiplier: -1
---- !u!114 &7471250057970090292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564143256430486412}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b6c8a0056a1354ca1601c25e84ac85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBeteenStep: 1
-  stepCount: 60
-  degrees: 0
-  addedV: {x: 3, y: 5, z: 0}
-  addedF: {x: 0, y: 333, z: 0}
-  keyToActivate: 0
+  isTouch: 0
+  forceMultiplier: -0.05

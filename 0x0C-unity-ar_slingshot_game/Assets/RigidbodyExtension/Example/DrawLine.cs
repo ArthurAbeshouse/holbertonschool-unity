@@ -13,9 +13,10 @@ public class DrawLine : MonoBehaviour {
     public float timeBeteenStep = 1;
     public int stepCount = 30;
 
-    public float degrees;
+    //public float degrees;
     
-    public Vector3 addedV, addedF;
+    public Vector3 addedV;
+    public Vector3 addedF;
 
     //Vector3 mp = Launch.mousePressDownPos;
 
@@ -43,7 +44,6 @@ public class DrawLine : MonoBehaviour {
 
     private void CalcTime()
     {
-
         Vector3[] t = _rb.CalculateTime(new Vector3(0, 0, 0),
             addedV, addedF);
 
@@ -68,6 +68,10 @@ public class DrawLine : MonoBehaviour {
 
     }
 	void Update () {
+
+        addedV = -Launch.porsh;
+
+        //addedF = Launch.mouseReleasePos;
 
         DrawMovementLine();
 
