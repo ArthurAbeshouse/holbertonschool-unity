@@ -9,10 +9,8 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(Collider))]
 public class Launch : MonoBehaviour
 {
-    private Vector3 mousePressDownPos;
-    private Vector3 mouseReleasePos;
-
-    //public static Vector3 porsh;
+    public Vector3 mousePressDownPos;
+    public Vector3 mouseReleasePos;
 
     //public static Vector3 mousePosition;
 
@@ -20,45 +18,69 @@ public class Launch : MonoBehaviour
 
     public bool isShoot;
 
-    public bool isTouch;
-
     public float forceMultiplier;
 
-    private LineRenderer LineRen;
+    public float velocity;
+
+    public float angle;
+
+    public int resolution;
+
+    public float g;
+
+    float radianAngle;
+
+    LineRenderer LineRen;
+
+    void Awake()
+    {
+        LineRen = GetComponent<LineRenderer>();
+        g = Mathf.Abs(Physics.gravity.y);
+    }
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        LineRen = GetComponent<LineRenderer>();
+        //RenderArc();
+        //LineRen = GetComponent<LineRenderer>();
     }
+
+   /* void RenderArc()
+    {
+        LineRen.SetVertexCount(resolution + 1);
+        LineRen.SetPositions(CalculateArcArray());
+    }
+
+    Vector3[] CalculateArcArray()
+    {
+        Vector3[] arcArray = new Vector3[resolution + 1];
+
+        radianAngle = Mathf.Deg2Rad * angle;
+        float maxDistance = (velocity * velocity * Mathf.Sin(2 * radianAngle)) / g;
+
+        for (int i = 0; i <= resolution; i += 1)
+        {
+            float t = (float)i / (float)resolution;
+            arcArray[i] = CalculateArPoint(t, maxDistance);
+        }
+
+        return arcArray;
+    }
+
+    Vector3 CalculateArPoint(float t, float maxDistance)
+    {
+        float x = t * maxDistance;
+        float y = x * Mathf.Tan(radianAngle) - ((g * x * x) / (2 * velocity * velocity * Mathf.Cos(radianAngle) * Mathf.Cos(radianAngle)));
+        return new Vector3(x, y);
+    } */
 
     private void OnMouseDown()
     {
         mousePressDownPos = Input.mousePosition;
-        LineRen.enabled = true;
-        /*if (isTouch)
-            return;
-
-        if (!isShoot && Input.touchCount > 0)
-        {
-            isTouch = true;
-            if (isTouch)
-            {
-                mousePressDownPos = Input.mousePosition;
-                //this.gameObject.GetComponent<DrawLine>().enabled = true;
-                porsh = mousePressDownPos;
-            }
-        }*/
        // Debug.Log(mousePressDownPos);
-        //this.gameObject.GetComponent<DrawLine>().enabled = true;
+        this.gameObject.GetComponent<DrawLine>().enabled = true;
         //DrawMovementLine();
     }
-
-    public void FixedUpdate()
-    {
-        UpdateTrajectory(transform.position, transform.forward, Input.mousePosition);
-        //OnMouseDown();
-    } 
 
     private void OnMouseUp()
     {
@@ -77,28 +99,7 @@ public class Launch : MonoBehaviour
         rb.AddForce(new Vector3(Force.x, Force.y, Force.y) * forceMultiplier);
         //rb.velocity = new Vector3(Force.x, Force.y, Force.y) * forceMultiplier;
         isShoot = true;
-        if (isShoot)
-            LineRen.enabled = false;
         Ammo_spawner.Instance.NewSpawnRequest();
-    }
-
-    void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity)
-    {
-        int numSteps = 20; // for example
-        float timeDelta = 1.0f / initialVelocity.magnitude; // for example
-    
-        LineRenderer lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.SetVertexCount(numSteps);
-    
-        Vector3 position = initialPosition;
-        Vector3 velocity = initialVelocity;
-        for (int i = 0; i < numSteps; ++i)
-        {
-            lineRenderer.SetPosition(i, position);
-    
-            position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
-            velocity += gravity * timeDelta;
-        }
     }
 
     /* private void DrawMovementLine()
