@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 648902595729172490}
   - component: {fileID: 1368013178605844096}
   - component: {fileID: 7292407207023261027}
-  - component: {fileID: -7047173377415961832}
-  - component: {fileID: 1002274554037323811}
-  - component: {fileID: -3487923314949836217}
+  - component: {fileID: 1574690298736692101}
+  - component: {fileID: 6239272328550645984}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -240,27 +239,7 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &-7047173377415961832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564143256430486412}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b34d6efe7738a0946bf58417e05a1552, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  line: {fileID: 7292407207023261027}
-  resolution: 30
-  velocity: {x: 0, y: 0, z: 0}
-  yLimit: -5
-  linecastResolution: 18
-  canHit:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1002274554037323811
+--- !u!114 &1574690298736692101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,14 +259,14 @@ MonoBehaviour:
   angle: 0
   resolution: 0
   g: 0
---- !u!114 &-3487923314949836217
+--- !u!114 &6239272328550645984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564143256430486412}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7b6c8a0056a1354ca1601c25e84ac85, type: 3}
   m_Name: 
@@ -299,4 +278,4 @@ MonoBehaviour:
   isTouch: 0
   addedV: {x: 0, y: 0, z: 0}
   addedF: {x: 0, y: 0, z: 0}
-  keyToActivate: 0
+  keyToActivate: 32

@@ -9,5 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/ARSlingshotGame.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 434dbf9838a614b109ff45febeef9ab1,
+      type: 2}
+    com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: ac005be5e3bf94df8ab545c0154879ba,
+      type: 2}
+    com.unity.xr.arkit.PlayerSettings: {fileID: 11400000, guid: 4cbe011b3de454dcfb3e23c09880cbf1,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 00fac7acb672cfd49bc684f62e4e45be,
       type: 2}
